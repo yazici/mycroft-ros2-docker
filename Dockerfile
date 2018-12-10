@@ -1,4 +1,4 @@
-from ubuntu:bionic
+from machinekoder/mycroft
 
 # Configure & update apt
 ENV DEBIAN_FRONTEND noninteractive
@@ -50,24 +50,25 @@ COPY include/glx.sh /tmp/install/
 RUN bash /tmp/install/glx.sh
 
 ###########################################
-# Install Machinekit
+# Install ROS
 #
-COPY include/mycroft.sh /tmp/install/
-RUN bash /tmp/install/mycroft.sh
+# set locale for ROS and tools such as "black" to work correctly
+ENV LC_ALL=C.UTF-8
+ENV LANG=C.UTF-8
+
+COPY include/ros2.sh /tmp/install/
+RUN bash /tmp/install/ros2.sh
 
 ###########################################
 # Install Tools
 #
-COPY include/tools.sh /tmp/install/
-RUN bash /tmp/install/tools.sh
+#COPY include/tools.sh /tmp/install/
+#RUN bash /tmp/install/tools.sh
 
 ###########################################
 # Setup environment
 #
 
-# set locale for tools such as "black" to work correctly
-ENV LC_ALL=C.UTF-8
-ENV LANG=C.UTF-8
 
 ###########################################
 # Set up user

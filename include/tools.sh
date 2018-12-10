@@ -3,11 +3,13 @@
 ###########################
 set -e
 CLEANUP=${CLEANUP:-true}
+# Ensure apt cache is up to date
+${SUDO} apt-get update
 
-${SUDO} apt-get update && ${SUDO} apt-get install -y \
-                                  zlib1g-dev \
-                                  libssl-dev \
-                                  python3-pip
+${SUDO} apt-get install -y \
+        zlib1g-dev \
+        libssl-dev \
+        python3-pip
 
 ${SUDO} pip3 install black
 

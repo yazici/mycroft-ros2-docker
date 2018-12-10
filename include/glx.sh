@@ -1,5 +1,10 @@
 ###########################
 # Install nvidia container runtime
+set -e
+CLEANUP=${CLEANUP:-true}
+
+# Ensure apt cache is up to date
+${SUDO} apt-get update
 
 # From
 # https://github.com/machinekoder/nvidia-opengl-docker
@@ -26,6 +31,10 @@ if test "$ENV_COOKIE" = docker; then
         libx11-dev \
         x11proto-gl-dev \
         python
+
+    # install non-nvidia alternative
+    apt-get install -y --no-install-recommends \
+            libgl1-mesa-glx
 
     mkdir -p ${NVIDIA_BUILD_DIR}
     cd ${NVIDIA_BUILD_DIR}

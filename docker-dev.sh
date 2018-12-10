@@ -20,9 +20,9 @@ done
 shift $(($OPTIND-1))
 BUILD=${BUILD:-false}
 TAG=${TAG:-develop}
-IMAGE=${IMAGE:-machinekoder/mycroft:$TAG}
+IMAGE=${IMAGE:-machinekoder/mycroft-base:$TAG}
 LINK_CONTAINER=${LINK_CONTAINER:+--link=${LINK_CONTAINER}}
-NAME=${NAME:-mycroft}
+NAME=${NAME:-mycroft-ros}
 
 if $BUILD; then
     cd $(dirname $0)
